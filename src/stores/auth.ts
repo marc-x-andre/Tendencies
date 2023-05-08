@@ -1,0 +1,72 @@
+import { ref, type Ref } from "vue";
+import { defineStore } from "pinia";
+
+import {
+  getAuth,
+  setPersistence,
+  signInWithRedirect,
+  inMemoryPersistence,
+  GoogleAuthProvider,
+  signOut,
+} from "firebase/auth";
+
+import { useFirebaseStore } from "./firebase";
+
+interface AuthError {
+  errorCode: string;
+  errorMessage: string;
+}
+
+export const useAuthStore = defineStore("auth", () => {
+  const { firebaseApp } = useFirebaseStore();
+  const auth = getAuth(firebaseApp);
+
+  const error: Ref<AuthError | false> = ref(false);
+  const loading = ref(false);
+
+  async function signInPopup() {
+    loading.value = true;
+    error.value = false;
+
+    setPersistence(auth, inMemoryPersistence)
+      .then(() => {
+        const provider = new GoogleAuthProvider();
+        // In memory persistence will be applied to the signed in Google user
+        // even though the persistence was set to 'none' and a page redirect
+        // occurred.
+        return signInWithRedirect(auth, provider);
+      })
+      .catch((err) => {
+        // Handle Errors here.
+        error.value = {
+          errorCode: err.code,
+          errorMessage: err.message,
+        };
+      })
+      .finally(() => {
+        loading.value = false;
+      });
+  }
+
+  function logOut() {
+    console.log("logOut");
+
+    loading.value = true;
+    error.value = false;
+    signOut(auth)
+      .catch((err) => {
+        error.value = err;
+      })
+      .finally(() => {
+        loading.value = false;
+      });
+  }
+
+  return {
+    error,
+    loading,
+    signInPopup,
+    logOut,
+    auth,
+  };
+});
