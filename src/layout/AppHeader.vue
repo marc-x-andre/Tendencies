@@ -3,7 +3,7 @@
     <template #default>
       <n-space justify="space-between" style="width: 80%; margin: 1rem auto; align-items: center;">
         <n-avatar src="/favicon.webp" referrerpolicy="no-referrer" style="background-color: white" />
-        <n-space>
+        <!-- <n-space>
           <template v-if="api.loading">
             <n-skeleton v-for="i in 3" :key="i" :width="isMobile ? '42px' : '78px'" :size="isMobile ? 'tiny' : 'medium'"
               :sharp="false" />
@@ -16,7 +16,7 @@
               <n-button :size="isMobile ? 'tiny' : 'medium'">New</n-button>
             </router-link>
           </template>
-        </n-space>
+        </n-space> -->
         <AppHeaderUser />
       </n-space>
     </template>
