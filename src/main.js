@@ -64,6 +64,7 @@ import {
   NFormItem,
   NRow,
   NCol,
+  NCalendar,
 } from "naive-ui";
 
 import App from "@/App.vue";
@@ -138,6 +139,7 @@ const naive = create({
     NCol,
     NRadioButton,
     NRadioGroup,
+    NCalendar,
   ],
 });
 
