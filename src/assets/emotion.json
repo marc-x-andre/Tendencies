@@ -1,0 +1,112 @@
+[
+  {
+    "value": "worried",
+    "i18n": {
+      "fr": {
+        "label": "Inquiet",
+        "description": "Qui est agité par la crainte, l'incertitude"
+      }
+    },
+    "image": "https://em-content.zobj.net/source/animated-noto-color-emoji/356/worried-face_1f61f.gif"
+  },
+  {
+    "value": "remorseful",
+    "i18n": {
+      "fr": {
+        "label": "Plein de remords",
+        "description": "Vive douleur morale causée par la conscience d'avoir mal agi"
+      }
+    },
+    "image": "https://em-content.zobj.net/source/animated-noto-color-emoji/356/pensive-face_1f614.gif"
+  },
+  {
+    "value": "cheerful",
+    "i18n": {
+      "fr": {
+        "label": "Joyeux",
+        "description": "Émotion agréable et profonde, sentiment exaltant ressenti par toute la conscience."
+      }
+    },
+    "image": "https://em-content.zobj.net/source/animated-noto-color-emoji/356/grinning-face-with-big-eyes_1f603.gif"
+  },
+  {
+    "value": "surprise",
+    "image": "https://em-content.zobj.net/source/animated-noto-color-emoji/356/face-with-open-eyes-and-hand-over-mouth_1fae2.gif",
+    "i18n": {
+      "fr": {
+        "label": "Surpris",
+        "description": "état de quelqu'un qui est frappé par quelque chose d'inattendu"
+      }
+    }
+  },
+  {
+    "value": "disdain",
+    "image": "https://em-content.zobj.net/source/animated-noto-color-emoji/356/face-with-rolling-eyes_1f644.gif",
+    "i18n": {
+      "fr": {
+        "label": "Mépris",
+        "description": "Mélange de dégoût et de colère, à l'égard d'un individu, de soi, ou groupe d'individus perçu comme inférieur ou sans intérêt."
+      }
+    }
+  },
+  {
+    "value": "fearful",
+    "image": "https://em-content.zobj.net/source/animated-noto-color-emoji/356/fearful-face_1f628.gif",
+    "i18n": {
+      "fr": {
+        "label": "Craintif",
+        "description": "La crainte est une émotion qui est synonyme de la peur ou de l'appréhension"
+      }
+    }
+  },
+  {
+    "value": "angry",
+    "image": "https://em-content.zobj.net/source/animated-noto-color-emoji/356/angry-face_1f620.gif",
+    "i18n": {
+      "fr": {
+        "label": "En colère",
+        "description": "Vif mécontentement entraînant des manifestations physiques ou psychologiques par une personne"
+      }
+    }
+  },
+  {
+    "value": "weary",
+    "image": "https://em-content.zobj.net/source/animated-noto-color-emoji/356/weary-face_1f629.gif",
+    "i18n": {
+      "fr": {
+        "label": "Fatigué",
+        "description": "La fatigue psychique se manifeste par une baisse de l’attention et de la concentration"
+      }
+    }
+  },
+  {
+    "value": "irritated",
+    "image": "https://em-content.zobj.net/source/animated-noto-color-emoji/356/face-with-steam-from-nose_1f624.gif",
+    "i18n": {
+      "fr": {
+        "label": "Irrité",
+        "description": "Être dans un état d'énervement pouvant aller jusqu'à la colère"
+      }
+    }
+  },
+  {
+    "value": "confounded",
+    "image": "https://em-content.zobj.net/source/animated-noto-color-emoji/356/confounded-face_1f616.gif",
+    "i18n": {
+      "fr": {
+        "label": "Confondu",
+        "description": "Qui est troublé, embarrassé par le sentiment d'une maladresse, d'une erreur ; désolé, navré"
+      }
+    }
+  },
+  {
+    "value": "concern",
+    "image": "https://em-content.zobj.net/source/animated-noto-color-emoji/356/frowning-face-with-open-mouth_1f626.gif",
+    "i18n": {
+      "fr": {
+        "label": "Préoccuper",
+        "description": "Souci vif et constant qui absorbe l'esprit au point de le détourner d'autres objets"
+      }
+    }
+  }
+]
