@@ -9,7 +9,7 @@
     <n-grid :cols="1" x-gap="12">
       <n-gi class="welcome">
         <n-image width="100" src="/favicon.webp" style="background-color: white" />
-        <h1>Tendencies</h1>
+        <n-h1 style="margin: 0">Tendencies</n-h1>
         <p>A simple inner state journal</p>
         <n-button @click="signInPopup" type="primary" style="margin: 1em">
           <template #icon>

@@ -5,15 +5,9 @@
       <n-form ref="formRef">
         <n-form-item label="3 fois par jour" path="time">
           <n-radio-group v-model:value="formValue.time" name="time">
-            <n-radio-button class="done" type="success" value="morning">
-              Matin
-            </n-radio-button>
-            <n-radio-button class="late" value="noon">
-              Midi
-            </n-radio-button>
-            <n-radio-button value="night">
-              Soir
-            </n-radio-button>
+            <n-radio-button value="morning"> Matin </n-radio-button>
+            <n-radio-button value="noon"> Midi </n-radio-button>
+            <n-radio-button value="night"> Soir </n-radio-button>
           </n-radio-group>
         </n-form-item>
         <n-form-item label="Sensation somatique, ton ressenti physique" path="somatic">
@@ -21,16 +15,20 @@
             placeholder="Palpitations, fébrilité, tensions musculaire au cou et aux épaules, ..." type="textarea"
             :autosize="{ minRows: 4 }" />
         </n-form-item>
-        <n-form-item label="Les émotions attribuables à tes sensations" path="emotion">
-          <EmotionSelector />
+        <n-form-item label="Les émotions attribuables à tes sensations" path="emotions">
+          <EmotionSelector v-model:emotions="formValue.emotions" />
         </n-form-item>
-        <n-form-item label="Les émotions attribuables à tes sensations" path="emotion">
-          <n-input v-model:value="formValue.emotion" placeholder="Colère, tristesse, joie, fierté, anxiété ..."
-            type="textarea" :autosize="{ minRows: 4 }" />
+        <n-form-item label="Une note sur l'évolution de ta journée" path="note">
+          <n-input v-model:value="formValue.note" placeholder="Un bref message à toi-même ..." type="textarea"
+            :autosize="{ minRows: 4 }" />
         </n-form-item>
         <n-row :gutter="[0, 24]">
           <n-col :span="24">
-            <n-space style="display: flex; justify-content: space-between; align-items: center">
+            <n-space style="
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+              ">
               <n-text depth="3">
                 {{ getMoment() }}
               </n-text>
@@ -46,35 +44,40 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref } from "vue";
 import MainLayout from "@/layout/MainLayout.vue";
-import { useFirestoreStore } from "../../stores/database";
-import EmotionSelector from '@/components/EmotionSelector.vue';
+import { useFirestoreStore, type Entry } from "../../stores/database";
+import EmotionSelector from "@/components/EmotionSelector.vue";
 const { saveEntry } = useFirestoreStore();
-
-console.log(saveEntry);
 
 const formRef = ref(null);
 const formValue = ref({
-  somatic: '',
-  emotion: '',
-  time: '',
-});
+  time: "morning",
+  somatic: "",
+  emotions: [],
+  note: ""
+} as Entry);
 const handleValidateClick = () => {
-  const { somatic, emotion, time } = formValue.value;
+  const { time, somatic, emotions, note } = formValue.value;
 
-  saveEntry(somatic, emotion, time as any).then(x => {
+  saveEntry({
+    note,
+    somatic,
+    emotions,
+    time,
+  }).then((x) => {
     console.log(x);
-  })
-}
+  });
+};
 
 const getMoment = () => {
   const d = new Date();
-  return `${d.toLocaleDateString('ca-en')} - ${d.toLocaleTimeString('ca-en', { hour: '2-digit', minute: '2-digit' })}`
-}
-
+  return `${d.toLocaleDateString("ca-en")} - ${d.toLocaleTimeString("ca-en", {
+    hour: "2-digit",
+    minute: "2-digit",
+  })}`;
+};
 </script>
-
 
 <style>
 .add-entry {

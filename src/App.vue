@@ -1,21 +1,26 @@
 <template>
   <n-config-provider :locale="frFR" :date-locale="dateFrFR" :theme-overrides="naiveTheme">
-    <router-view />
+    <router-view v-if="firebaseStateDefined" />
+    <Loading v-else />
   </n-config-provider>
 </template>
 
 <script setup lang="ts">
-import { NConfigProvider } from "naive-ui";
+import { ref } from "vue";
+import { NConfigProvider, frFR, dateFrFR } from "naive-ui";
 import { useRouter } from "vue-router";
 import { useAuthStore } from "./stores/auth";
 import naiveTheme from "./assets/naive-theme.json";
-import { frFR, dateFrFR } from "naive-ui";
+import Loading from "./views/Loading/index.vue";
 
 const router = useRouter();
 const authStore = useAuthStore();
+const firebaseStateDefined = ref(false);
 
-authStore.auth.onAuthStateChanged(() => {
+authStore.auth.onAuthStateChanged((user) => {
+  console.log(user);
   redirectOnLogin();
+  firebaseStateDefined.value = true;
 });
 
 const redirectOnLogin = () => {
@@ -25,6 +30,4 @@ const redirectOnLogin = () => {
     router.push("/");
   }
 };
-
-redirectOnLogin();
 </script>

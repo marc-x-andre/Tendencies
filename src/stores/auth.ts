@@ -22,10 +22,8 @@ export const useAuthStore = defineStore("auth", () => {
   const auth = getAuth(firebaseApp);
 
   const error: Ref<AuthError | false> = ref(false);
-  const loading = ref(false);
 
   async function signInPopup() {
-    loading.value = true;
     error.value = false;
 
     setPersistence(auth, inMemoryPersistence)
@@ -42,29 +40,19 @@ export const useAuthStore = defineStore("auth", () => {
           errorCode: err.code,
           errorMessage: err.message,
         };
-      })
-      .finally(() => {
-        loading.value = false;
       });
   }
 
   function logOut() {
     console.log("logOut");
-
-    loading.value = true;
     error.value = false;
-    signOut(auth)
-      .catch((err) => {
-        error.value = err;
-      })
-      .finally(() => {
-        loading.value = false;
-      });
+    signOut(auth).catch((err) => {
+      error.value = err;
+    });
   }
 
   return {
     error,
-    loading,
     signInPopup,
     logOut,
     auth,

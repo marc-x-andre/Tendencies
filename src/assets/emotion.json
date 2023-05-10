@@ -4,7 +4,7 @@
     "i18n": {
       "fr": {
         "label": "Inquiet",
-        "description": "Qui est agité par la crainte, l'incertitude"
+        "description": "Agité par la crainte, l'incertitude"
       }
     },
     "image": "https://em-content.zobj.net/source/animated-noto-color-emoji/356/worried-face_1f61f.gif"
@@ -14,7 +14,7 @@
     "i18n": {
       "fr": {
         "label": "Plein de remords",
-        "description": "Vive douleur morale causée par la conscience d'avoir mal agi"
+        "description": "Douleur morale causée par la conscience d'avoir mal agi"
       }
     },
     "image": "https://em-content.zobj.net/source/animated-noto-color-emoji/356/pensive-face_1f614.gif"
@@ -24,7 +24,7 @@
     "i18n": {
       "fr": {
         "label": "Joyeux",
-        "description": "Émotion agréable et profonde, sentiment exaltant ressenti par toute la conscience."
+        "description": "Émotion agréable et profonde, sentiment exaltant."
       }
     },
     "image": "https://em-content.zobj.net/source/animated-noto-color-emoji/356/grinning-face-with-big-eyes_1f603.gif"
@@ -35,7 +35,7 @@
     "i18n": {
       "fr": {
         "label": "Surpris",
-        "description": "état de quelqu'un qui est frappé par quelque chose d'inattendu"
+        "description": "Étre frappé par quelque chose d'inattendu"
       }
     }
   },
@@ -45,7 +45,7 @@
     "i18n": {
       "fr": {
         "label": "Mépris",
-        "description": "Mélange de dégoût et de colère, à l'égard d'un individu, de soi, ou groupe d'individus perçu comme inférieur ou sans intérêt."
+        "description": "Mélange de dégoût et de colère, vers qql perçu comme inférieur."
       }
     }
   },
@@ -55,7 +55,7 @@
     "i18n": {
       "fr": {
         "label": "Craintif",
-        "description": "La crainte est une émotion qui est synonyme de la peur ou de l'appréhension"
+        "description": "Synonyme de la peur ou de l'appréhension"
       }
     }
   },
@@ -65,7 +65,7 @@
     "i18n": {
       "fr": {
         "label": "En colère",
-        "description": "Vif mécontentement entraînant des manifestations physiques ou psychologiques par une personne"
+        "description": "Vif mécontentement entraînant des manifestations physiques ou psychologiques"
       }
     }
   },
@@ -75,7 +75,7 @@
     "i18n": {
       "fr": {
         "label": "Fatigué",
-        "description": "La fatigue psychique se manifeste par une baisse de l’attention et de la concentration"
+        "description": "Une baisse de l’attention et de la concentration"
       }
     }
   },
@@ -85,7 +85,7 @@
     "i18n": {
       "fr": {
         "label": "Irrité",
-        "description": "Être dans un état d'énervement pouvant aller jusqu'à la colère"
+        "description": "État d'énervement pouvant aller jusqu'à la colère"
       }
     }
   },
@@ -95,7 +95,7 @@
     "i18n": {
       "fr": {
         "label": "Confondu",
-        "description": "Qui est troublé, embarrassé par le sentiment d'une maladresse, d'une erreur ; désolé, navré"
+        "description": "Troublé, embarrassé par le sentiment d'une maladresse, d'une erreur ; désolé, navré"
       }
     }
   },
