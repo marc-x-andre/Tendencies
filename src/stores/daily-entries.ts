@@ -1,5 +1,5 @@
 import { defineStore } from "pinia";
-import { useFirebaseStore } from "./firebase";
+import { useFirestoreStore } from "./firestore";
 import {
   getFirestore,
   doc,
@@ -13,9 +13,8 @@ import {
   FieldValue,
 } from "firebase/firestore";
 import { ref } from "vue";
-import { useAuthStore } from "./auth";
 
-export type Entry = {
+export type DailyEntry = {
   id?: string;
   somatic: string;
   emotions: string[];
@@ -24,35 +23,26 @@ export type Entry = {
   created?: FieldValue;
 };
 
-export const useFirestoreStore = defineStore("firestore", () => {
-  const { firebaseApp } = useFirebaseStore();
-  const { auth } = useAuthStore();
-  const firestore = getFirestore(firebaseApp);
+export const useDailyEntriesStore = defineStore("dailyEntries", () => {
+  const { firestore, entriesCollectionRef } = useFirestoreStore();
 
-  const entriesRef = collection(
-    firestore,
-    "users",
-    `${auth.currentUser?.uid}`,
-    "entries"
-  );
-
-  const userEntries = ref<Entry[] | undefined>(undefined);
+  const userEntries = ref<DailyEntry[] | undefined>(undefined);
   const loading = ref(false);
 
   const fetchAllEntries = async () => {
-    const querySnapshot = await getDocs(entriesRef);
+    const querySnapshot = await getDocs(entriesCollectionRef);
     userEntries.value = querySnapshot.docs.map((e) => ({
       id: e.id,
       ...e.data(),
-    })) as Entry[];
+    })) as DailyEntry[];
     console.log(userEntries.value);
   };
 
-  const saveEntry = async (entry: Entry) => {
+  const saveEntry = async (entry: DailyEntry) => {
     if (!entry.id) {
       entry.created = serverTimestamp();
     }
-    const docRef = await addDoc(entriesRef, entry);
+    const docRef = await addDoc(entriesCollectionRef, entry);
     console.log("Document written with ID: ", docRef.id);
   };
   fetchAllEntries();

@@ -16,12 +16,13 @@
             :autosize="{ minRows: 4 }" />
         </n-form-item>
         <n-form-item label="Les émotions attribuables à tes sensations" path="emotions">
-          <EmotionSelector v-model:emotions="formValue.emotions" />
+          <EmotionSelector v-model:modelValue="formValue.emotions" />
         </n-form-item>
         <n-form-item label="Une note sur l'évolution de ta journée" path="note">
           <n-input v-model:value="formValue.note" placeholder="Un bref message à toi-même ..." type="textarea"
             :autosize="{ minRows: 4 }" />
         </n-form-item>
+        <pre>{{ formValue }}</pre>
         <n-row :gutter="[0, 24]">
           <n-col :span="24">
             <n-space style="
@@ -46,9 +47,9 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import MainLayout from "@/layout/MainLayout.vue";
-import { useFirestoreStore, type Entry } from "../../stores/database";
+import { useDailyEntriesStore, type DailyEntry } from "../../stores/daily-entries";
 import EmotionSelector from "@/components/EmotionSelector.vue";
-const { saveEntry } = useFirestoreStore();
+const { saveEntry } = useDailyEntriesStore();
 
 const formRef = ref(null);
 const formValue = ref({
@@ -56,7 +57,12 @@ const formValue = ref({
   somatic: "",
   emotions: [],
   note: ""
-} as Entry);
+} as DailyEntry);
+
+const handleEmotion = (value) => {
+  console.log(value);
+
+}
 const handleValidateClick = () => {
   const { time, somatic, emotions, note } = formValue.value;
 

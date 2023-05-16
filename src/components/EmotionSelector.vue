@@ -1,10 +1,11 @@
 <template>
-  <n-select multiple :options="options" :render-label="renderLabel" :render-tag="renderMultipleSelectTag" filterable />
+  <n-select multiple :options="options" :render-label="renderLabel" :render-tag="renderMultipleSelectTag"
+    v-model:value="internalValue" filterable />
 </template>
 
 
 <script setup lang="ts">
-import { h } from 'vue'
+import { computed, h, ref } from 'vue'
 import {
   NAvatar,
   NText,
@@ -24,6 +25,23 @@ type Option = {
 }
 
 const options: Option[] = emotionJson;
+
+const props = defineProps<{
+  modelValue: string[],
+}>();
+
+const emit = defineEmits(['update:modelValue']);
+
+const internalValue = computed({
+  get() {
+    return props.modelValue;
+  },
+  set(value: string) {
+    console.log(value);
+
+    return emit('update:modelValue', value);
+  },
+});
 
 const renderMultipleSelectTag = ({ option, handleClose }: { option: Option, handleClose: Function }) => {
   return h(NTag, {
