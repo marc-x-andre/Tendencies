@@ -8,15 +8,17 @@ export const useFirestoreStore = defineStore("firestore", () => {
   const { auth } = useAuthStore();
   const firestore = getFirestore(firebaseApp);
 
-  const entriesCollectionRef = collection(
-    firestore,
-    "users",
-    `${auth.currentUser?.uid}`,
-    "entries"
-  );
+  const getEntryCol = () => {
+    return collection(
+      firestore,
+      "users",
+      `${auth.currentUser?.uid}`,
+      "entries"
+    );
+  };
 
   return {
     firestore,
-    entriesCollectionRef,
+    getEntryCol,
   };
 });

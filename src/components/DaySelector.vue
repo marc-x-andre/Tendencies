@@ -1,32 +1,23 @@
 <template>
   <n-space class="emotion-wheel" vertical>
-    <n-calendar v-model:value="value" :is-date-disabled="isDateDisabled" @update:value="handleUpdateValue" />
+    <n-calendar v-model:value="value" @update:value="handleUpdateValue" />
   </n-space>
 </template>
 
-<script lang="ts">
-import { defineComponent, ref } from "vue"
-import { isYesterday, addDays } from 'date-fns/esm'
+<script setup lang="ts">
+import { ref } from "vue";
+import { addDays } from "date-fns/esm";
+import { useDailyEntriesStore } from "@/stores/daily-entries";
 
-export default defineComponent({
-  setup() {
-    return {
-      value: ref(addDays(Date.now(), 0).valueOf()),
-      handleUpdateValue(
-        _: number,
-        { year, month, date }: { year: number; month: number; date: number }
-      ) {
-        console.log(`${year}-${month}-${date}`);
-      },
-      isDateDisabled(timestamp: number) {
-        if (isYesterday(timestamp)) {
-          return true
-        }
-        return false
-      }
-    }
-  }
-})
+const entryStore = useDailyEntriesStore();
+const value = ref(addDays(Date.now(), 0).valueOf());
+
+function handleUpdateValue(
+  _: number,
+  { year, month, date }: { year: number; month: number; date: number }
+) {
+  entryStore.setSelectedDate(new Date(year, month - 1, date));
+}
 </script>
 
 <style lang="sass">
@@ -54,5 +45,4 @@ export default defineComponent({
 
   .n-calendar-date__day
     display: none
-
 </style>

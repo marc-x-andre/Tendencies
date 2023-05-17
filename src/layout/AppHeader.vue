@@ -1,7 +1,7 @@
 <template>
   <n-page-header>
     <template #default>
-      <n-space justify="space-between" style="width: 80%; margin: 1rem auto; align-items: center;">
+      <n-space justify="space-between" style="width: 80%; margin: 0.5rem auto; align-items: center;">
         <n-avatar src="/favicon.webp" referrerpolicy="no-referrer" style="background-color: white" />
         <!-- <n-space>
           <template v-if="api.loading">

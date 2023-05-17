@@ -1,13 +1,7 @@
 import { defineStore } from "pinia";
 import { useFirestoreStore } from "./firestore";
 import {
-  getFirestore,
-  doc,
-  setDoc,
   addDoc,
-  getDoc,
-  collection,
-  query,
   getDocs,
   serverTimestamp,
   FieldValue,
@@ -19,36 +13,57 @@ export type DailyEntry = {
   somatic: string;
   emotions: string[];
   note: string;
-  time: "morning" | "noon" | "night";
+  time: "morning" | "afternoon" | "evening";
+  date: Date | { seconds: number };
   created?: FieldValue;
 };
 
-export const useDailyEntriesStore = defineStore("dailyEntries", () => {
-  const { firestore, entriesCollectionRef } = useFirestoreStore();
+export type DayEntries = {
+  morning: DailyEntry;
+  afternoon: DailyEntry;
+  evening: DailyEntry;
+};
 
-  const userEntries = ref<DailyEntry[] | undefined>(undefined);
-  const loading = ref(false);
+export const useDailyEntriesStore = defineStore("dailyEntries", () => {
+  const { getEntryCol } = useFirestoreStore();
+
+  const allEntry = ref<DailyEntry[] | undefined>(undefined);
+  const selectedDate = ref<Date>(new Date());
+  const selectedDateEntries = ref<DailyEntry[] | undefined>(undefined);
+
+  const setSelectedDate = async (date: Date) => (selectedDate.value = date);
 
   const fetchAllEntries = async () => {
-    const querySnapshot = await getDocs(entriesCollectionRef);
-    userEntries.value = querySnapshot.docs.map((e) => ({
+    const querySnapshot = await getDocs(getEntryCol());
+    allEntry.value = querySnapshot.docs.map((e) => ({
       id: e.id,
       ...e.data(),
     })) as DailyEntry[];
-    console.log(userEntries.value);
+    // WIP set selected date
+    selectedDateEntries.value = allEntry.value.filter((e) => {
+      if (e.date?.seconds) {
+        return (
+          new Date().toDateString() === new Date(e.date.seconds).toDateString()
+        );
+      }
+    });
+    console.log(selectedDateEntries.value);
   };
 
   const saveEntry = async (entry: DailyEntry) => {
     if (!entry.id) {
       entry.created = serverTimestamp();
+      entry.date = selectedDate.value;
     }
-    const docRef = await addDoc(entriesCollectionRef, entry);
+    const docRef = await addDoc(getEntryCol(), entry);
     console.log("Document written with ID: ", docRef.id);
   };
-  fetchAllEntries();
+
   return {
-    loading,
-    firestore,
+    allEntry,
     saveEntry,
+    selectedDate,
+    setSelectedDate,
+    fetchAllEntries,
   };
 });

@@ -21,6 +21,3 @@
 <script setup lang="ts">
 import { CheckmarkDone, Hourglass } from "@vicons/ionicons5";
 </script>
-
-<style lang="sass">
-</style>
